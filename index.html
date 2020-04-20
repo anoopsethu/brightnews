@@ -54,7 +54,7 @@
 		  	this.loadItems();
 		  },
 		  data: {
-		  	colors: ['#87CEEB', '#FF7F50', '#66CDAA', '#FF8C00', '#AFEEEE', '#FFA07A', '#D8BFD8', '#FFD700', '#FFA07A', '#DDA0DD', '#BC8F8F', '#FFE4B5', '#F28D8C', '#FFC800', '#74EADE'],
+		  	colors: ['#87CEEB', '#FF7F50', '#66CDAA', '#FF8C00', '#AFEEEE', '#FFA07A', '#D8BFD8', '#FFD700', '#FFA07A', '#DDA0DD', '#BC8F8F', '#F28D8C', '#FFC800', '#74EADE'],
 		    news_items: [],
 		  },
 		  methods: {
@@ -90,10 +90,12 @@
 				}, function done(err) {
 				    if (err) { console.error(err); return; }
 				    setTimeout(function(){
-				  		$('.news-grid').masonry({
-							itemSelector: '.grid-item',
-							gutter: 30,
-						});
+					  	if($(window).width()>800){
+					  		$('.news-grid').masonry({
+								itemSelector: '.grid-item',
+								gutter: 30,
+							});
+					  	}	
 				  	});
 				});
 		  	}
