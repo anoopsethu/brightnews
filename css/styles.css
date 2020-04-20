@@ -60,6 +60,7 @@ a{
 	top: 0px;
 	transition: all 0.1s ease-in;
 	text-decoration: none;
+	overflow: hidden;
 }
 /*.btn-primary:hover{
 	top: -5px;
@@ -77,6 +78,26 @@ a{
 	color: #fff;
 	text-transform: uppercase;
     font-size: 16px;
+}
+.circle-1{
+    border: 35px solid #fff;
+    opacity: 0.2;
+    height: 150px;
+    width: 150px;
+    border-radius: 1000px;
+    position: absolute;
+    left: -50px;
+    top: -40px;
+}
+.circle-2{
+    border: 35px solid #fff;
+    opacity: 0.175;
+    height: 150px;
+    width: 150px;
+    border-radius: 1000px;
+    position: absolute;
+    right: -80px;
+    bottom: 20%;
 }
 
 @media(max-width: 800px){

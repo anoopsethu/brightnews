@@ -26,17 +26,53 @@
 							<p class="date">{{item.date}}</p>
 							<h3 class="title">{{item.title}}</h3>
 							<span class="btn">Read more</span>
+							<div class="circle-1"></div>
+							<div class="circle-2"></div>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- <div id="add-entry-modal" class="modal" v-bind:class="{ 'show': add_entry_modal }" aria-hidden="true">
+		  <div tabindex="-1" class="modal-overlay" data-micromodal-close>
+		    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+		      <header>
+		        <div class="row">
+		        	<div class="col-xs-10">
+		        		<h2 class="modal-title" id="modal-1-title">
+				          Heading out? 🏃
+				        </h2>
+		        	</div>
+		        	<div class="col-xs-2 align-right">
+				        <button class="modal-close" aria-label="Close modal" @click="toggleEntryModal()"></button>
+		        	</div>
+		        </div>
+		      </header>
+		      <div class="" id="modal-1-content">
+		      	<p class="modal-desc">Just fill up the tiny form below.</p>
+		      	<input v-model="input_name" type="text" placeholder="Your name here..." class="form-control" name="">
+		      	<textarea v-model="input_desc" placeholder="Describe the footwear here..." class="form-control" rows="5"></textarea>
+		      	<div class="row">
+		      		<div class="col-xs-3"></div>
+		      		<div class="col-xs-4"></div>
+		      		<div class="col-xs-5">
+		      			<button class="btn btn-primary" @click="borrowChappal()">
+		      				<span v-if="!entry_loader">Make an entry</span>
+							<div v-if="entry_loader" class="loader loader-white">Loading...</div>
+		      			</button>
+		      		</div>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div> -->
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script type="text/javascript" src="js/list.min.js"></script>
   	<script type="text/javascript" src="js/airtable.browser.js"></script>
 	<script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
+  	<script type="text/javascript" src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 	<script type="text/javascript">
 
 
@@ -69,7 +105,6 @@
 				    view: "Grid view"
 				}).eachPage(function page(records, fetchNextPage) {
 				    records.forEach((record)=>{
-				    	console.log(record);
 				    	var title = record.fields['Title'];
 				    	var date = record.fields['Date'];
 				    	var url = record.fields['URL'];
@@ -82,8 +117,6 @@
 				    	}
 				    	self.news_items.push(news);
 				    });
-
-				    console.log(self.news_items, 9090);
 
 				    fetchNextPage();
 
