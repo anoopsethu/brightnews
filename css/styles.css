@@ -267,6 +267,10 @@ input[type="text"].form-control{
 
 
 @media(max-width: 800px){
+	.container{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 	.card{
 		width: 100%;
 		margin-bottom: 20px;
@@ -291,6 +295,7 @@ input[type="text"].form-control{
 		height: 100vh;
 		border-radius: 0px;
 		margin-top: 0px;
+		padding: 50px 20px;
 	}
 	.modal-container .btn{
 		display: block;
