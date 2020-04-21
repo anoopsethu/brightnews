@@ -22,7 +22,7 @@
 					<a class="btn btn-primary">Suggest news</a>
 				</div>
 				<div id="app">
-					<div class="news-grid">
+					<div class="news-grid hide" id="news-grid">
 						<a v-for="item in news_items" class="grid-item card animated fadeInUpSmall" v-bind:style="{ backgroundColor: item.color}" v-bind:href="item.url" target="_blank">
 							<p class="date">{{item.date}}</p>
 							<h3 class="title">{{item.title}}</h3>
@@ -84,7 +84,6 @@
 
 		var base = new Airtable({apiKey: 'keyaY233WFzFahQdD'}).base('appM8lsxA6x7LaALC');
 
-
 		var app = new Vue({
 		  el: '#app',
 		  mounted: function(){
@@ -93,6 +92,7 @@
 		  data: {
 		  	colors: ['#87CEEB', '#FF7F50', '#66CDAA', '#FF8C00', '#AFEEEE', '#FFA07A', '#D8BFD8', '#FFD700', '#FFA07A', '#DDA0DD', '#BC8F8F', '#F28D8C', '#FFC800', '#74EADE'],
 		    news_items: [],
+		    loading: true,
 		  },
 		  methods: {
 		  	loadItems: function(){
@@ -123,14 +123,15 @@
 				}, function done(err) {
 				    if (err) { console.error(err); return; }
 				    self.sortNews();
-				    setTimeout(function(){
+				    setTimeout(()=>{
 					  	if($(window).width()>800){
 					  		$('.news-grid').masonry({
 								itemSelector: '.grid-item',
 								gutter: 30,
 							});
-					  	}	
+					  	}
 				  	});
+				  	$("#news-grid").removeClass("hide");
 				});
 		  	},
 			sortNews: function() {

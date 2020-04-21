@@ -102,6 +102,9 @@ a{
     right: -80px;
     bottom: 20%;
 }
+.hide{
+	display: none;
+}
 
 @media(max-width: 800px){
 	.card{
