@@ -41,13 +41,14 @@
 					<a class="btn btn-primary" @click="toggleSuggestModal()">Suggest news</a>
 				</div>
 				<div>
-					<div class="news-grid-loader animated fadeIn" id="news-grid-loader">
-						<div class="loader"></div>
+					<!-- <div class="news-grid-loader animated fadeIn" id="news-grid-loader"> -->
+					<div class="news-grid-loader animated fadeIn">
+						<span class="intro-sub-header">Loading goodness</span><div class="loader"></div>
 					</div>
-					<div class="news-grid hide" id="news-grid">
+					<div class="news-grid hide" id="news-grid" style="display: none !important">
 						<a v-for="item in news_items" class="grid-item card animated fadeInUpSmall" v-bind:style="{ backgroundColor: item.color}" v-bind:href="item.url" target="_blank">
 							<p class="date">{{item.date}}</p>
-							<h3 class="title">{{item.title}}</h3>
+							<h3 class="title">{{item.title}}!</h3>
 							<span class="btn">Read more</span>
 							<div class="circle-1"></div>
 							<div class="circle-2"></div>
