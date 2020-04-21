@@ -152,17 +152,19 @@
 				    view: "Grid view"
 				}).eachPage(function page(records, fetchNextPage) {
 				    records.forEach((record)=>{
-				    	var title = record.fields['Title'];
-				    	var date = record.fields['Date'];
-				    	var url = record.fields['URL'];
-				    	var color = self.colors[Math.floor(Math.random() * self.colors.length)];
-				    	var news = {
-				    		'title': title,
-				    		'date': date,
-				    		'url': url,
-				    		'color': color,
+				    	if(record.fields['Title'] && record.fields['Title'].length>0){
+				    		var title = record.fields['Title'];
+					    	var date = record.fields['Date'];
+					    	var url = record.fields['URL'];
+					    	var color = self.colors[Math.floor(Math.random() * self.colors.length)];
+					    	var news = {
+					    		'title': title,
+					    		'date': date,
+					    		'url': url,
+					    		'color': color,
+					    	}
+					    	self.news_items.push(news);
 				    	}
-				    	self.news_items.push(news);
 				    });
 				    fetchNextPage();
 
