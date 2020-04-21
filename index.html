@@ -73,14 +73,15 @@
 			        </div>
 			      </header>
 			      <div id="modal-1-content">
-			      	<p class="modal-desc">Just fill up the tiny form below.</p>
-			      	<textarea v-model="suggested_title" placeholder="What is this news about?" class="form-control" rows="4"></textarea>
-			      	<input v-model="suggested_url" type="text" placeholder="Put in the link to news piece" class="form-control" name="">
+			      	<p class="modal-desc" v-if="!form_error">Just fill up the tiny form below.</p>
+			      	<p class="modal-desc modal-desc-error" v-if="form_error">No empty fields, please. Let's spread goodness!</p>
+			      	<textarea v-model="suggested_title" placeholder="What is the news about?" class="form-control" rows="4"></textarea>
+			      	<input v-model="suggested_url" type="text" placeholder="Link to the news piece" class="form-control" name="">
 			      	<div class="row">
 			      		<div class="col-md-3 col-xs-12"></div>
 			      		<div class="col-md-4 col-xs-12"></div>
 			      		<div class="col-md-5 col-xs-12 align-right">
-			      			<button class="btn btn-primary" @click="sendSuggestedItem()">Spread brightness
+			      			<button class="btn btn-primary" @click="sendSuggestedItem()">Spread bright news
 			      			</button>
 			      		</div>
 			      	</div>
@@ -141,6 +142,7 @@
 		    loading: true,
 		    suggestion_modal: false,
 		    suggestion_modal_success: false,
+		    form_error: false,
 		  },
 		  methods: {
 		  	loadItems: function(){
@@ -196,6 +198,7 @@
 				this.suggested_title = null;
 				this.suggested_url = null;
 				this.suggestion_modal_success = false;
+				this.form_error = false;
 			},
 			sendSuggestedItem: function(){
 				if(this.suggested_title && this.suggested_url){
@@ -214,6 +217,8 @@
 						}
 						app.suggestion_modal_success = true;
 					});
+				} else {
+					this.form_error = true;
 				}
 			},
 		  },

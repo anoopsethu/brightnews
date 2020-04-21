@@ -184,6 +184,9 @@ textarea{
 	color: #666;
 	margin: 0px 0px 20px 0px;
 }
+.modal-desc-error{
+	color: #F0001D;
+}
 .form-control{
 	width: 100%;
 	font-size: 16px;
