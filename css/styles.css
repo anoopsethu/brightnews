@@ -94,7 +94,7 @@ textarea{
 }
 .circle-1{
     border: 35px solid #fff;
-    opacity: 0.2;
+    opacity: 0.15;
     height: 150px;
     width: 150px;
     border-radius: 1000px;
@@ -104,7 +104,7 @@ textarea{
 }
 .circle-2{
     border: 35px solid #fff;
-    opacity: 0.175;
+    opacity: 0.1;
     height: 150px;
     width: 150px;
     border-radius: 1000px;
