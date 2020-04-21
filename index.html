@@ -12,16 +12,19 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" id="app">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="intro animated fadeInDownSmall">
 					<img src="img/white-sun-with-small-cloud.png" class="intro-logo">
 					<h1 class="intro-header">The Bright News</h1>
 					<h4 class="intro-sub-header">A curated list of good things happening around the world that we can appreciate. Also, your daily dose of morning wellness.</h4>
-					<a class="btn btn-primary">Suggest news</a>
+					<a class="btn btn-primary" @click="toggleSuggestModal()">Suggest news</a>
 				</div>
-				<div id="app">
+				<div>
+					<div class="news-grid-loader">
+						
+					</div>
 					<div class="news-grid hide" id="news-grid">
 						<a v-for="item in news_items" class="grid-item card animated fadeInUpSmall" v-bind:style="{ backgroundColor: item.color}" v-bind:href="item.url" target="_blank">
 							<p class="date">{{item.date}}</p>
@@ -34,39 +37,37 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div id="add-entry-modal" class="modal" v-bind:class="{ 'show': add_entry_modal }" aria-hidden="true">
+		<div id="add-entry-modal" class="modal" v-bind:class="{ 'show': sugegstion_modal }" aria-hidden="true">
 		  <div tabindex="-1" class="modal-overlay" data-micromodal-close>
 		    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
 		      <header>
 		        <div class="row">
 		        	<div class="col-xs-10">
 		        		<h2 class="modal-title" id="modal-1-title">
-				          Heading out? 🏃
+				          Have a bright news to share? 🤗
 				        </h2>
 		        	</div>
 		        	<div class="col-xs-2 align-right">
-				        <button class="modal-close" aria-label="Close modal" @click="toggleEntryModal()"></button>
+				        <button class="modal-close" aria-label="Close modal" @click="toggleSuggestModal()"></button>
 		        	</div>
 		        </div>
 		      </header>
 		      <div class="" id="modal-1-content">
 		      	<p class="modal-desc">Just fill up the tiny form below.</p>
-		      	<input v-model="input_name" type="text" placeholder="Your name here..." class="form-control" name="">
-		      	<textarea v-model="input_desc" placeholder="Describe the footwear here..." class="form-control" rows="5"></textarea>
+		      	<textarea placeholder="What is this news about?" class="form-control" rows="3"></textarea>
+		      	<input type="text" placeholder="Put in the link to news piece" class="form-control" name="">
 		      	<div class="row">
 		      		<div class="col-xs-3"></div>
 		      		<div class="col-xs-4"></div>
-		      		<div class="col-xs-5">
-		      			<button class="btn btn-primary" @click="borrowChappal()">
-		      				<span v-if="!entry_loader">Make an entry</span>
-							<div v-if="entry_loader" class="loader loader-white">Loading...</div>
+		      		<div class="col-xs-5 align-right">
+		      			<button class="btn btn-primary">Submit brightness
 		      			</button>
 		      		</div>
 		      	</div>
 		      </div>
 		    </div>
 		  </div>
-		</div> -->
+		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -76,6 +77,7 @@
   	<script type="text/javascript" src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 	<script type="text/javascript">
 
+		MicroModal.init();
 
 		var AIRTABLE_API_KEY = "keyaY233WFzFahQdD";
 		var AIRTABLE_APP_ID = "appM8lsxA6x7LaALC";
@@ -93,6 +95,7 @@
 		  	colors: ['#87CEEB', '#FF7F50', '#66CDAA', '#FF8C00', '#AFEEEE', '#FFA07A', '#D8BFD8', '#FFD700', '#FFA07A', '#DDA0DD', '#BC8F8F', '#F28D8C', '#FFC800', '#74EADE'],
 		    news_items: [],
 		    loading: true,
+		    sugegstion_modal: false,
 		  },
 		  methods: {
 		  	loadItems: function(){
@@ -138,7 +141,10 @@
 		        this.news_items.sort( ( a, b) => {
 		            return new Date(b.date) - new Date(a.date);
 		        });
-		    }
+		    },
+		    toggleSuggestModal:  function(){
+				this.sugegstion_modal = !this.sugegstion_modal;
+			},
 		  },
 		});
 
