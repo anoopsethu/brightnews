@@ -172,7 +172,7 @@ textarea{
 }
 .modal-close:before {
     content: "\2715";
-    color: #999;
+    color: #777;
 }
 .modal-title{
 	font-size: 24px;
