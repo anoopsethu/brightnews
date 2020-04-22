@@ -75,7 +75,7 @@
 			      <div id="modal-1-content">
 			      	<p class="modal-desc" v-if="!form_error">Just fill up the tiny form below.</p>
 			      	<p class="modal-desc modal-desc-error" v-if="form_error">No empty fields, please. Let's spread goodness, not emptiness!</p>
-			      	<textarea v-model="suggested_title" placeholder="What is the news about?" class="form-control" rows="4"></textarea>
+			      	<textarea v-model="suggested_title" placeholder="What is the news about?" class="form-control" rows="4" maxlength="240"></textarea>
 			      	<input v-model="suggested_url" type="text" placeholder="Link to the news piece" class="form-control" name="">
 			      	<div class="row">
 			      		<div class="col-md-3 col-xs-12"></div>
