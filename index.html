@@ -81,6 +81,7 @@
 			      	<p class="modal-desc modal-desc-error" v-if="form_error">No empty fields, please. Let's spread goodness, not emptiness!</p>
 			      	<textarea v-model="suggested_title" placeholder="What is the news about?" class="form-control" rows="4" maxlength="240"></textarea>
 			      	<input v-model="suggested_url" type="text" placeholder="Link to the news piece" class="form-control" name="">
+			      	<input v-model="suggested_name" type="text" placeholder="What's your name?" class="form-control" name="">
 			      	<div class="row">
 			      		<div class="col-md-3 col-xs-12"></div>
 			      		<div class="col-md-4 col-xs-12"></div>
@@ -106,7 +107,8 @@
 			      	<div class="row">
 			      		<div class="col-md-10 col-md-offset-1">
 			      			<h2 class="modal-title" id="modal-1-title">
-					          Your news is submitted! 
+					          <span v-if="suggested_name.length>0">Your news is submitted, {{suggested_name}}!</span>
+					          <span v-if="!suggested_name.length || suggested_name.length==0">Your news is submitted!</span>
 					        </h2>
 					      	<p class="modal-desc">We'll soon update the list with your news. Wash your hands, stay safe, stay bright!</p> 
 			      		</div>
@@ -141,6 +143,7 @@
 		  data: {
 		    suggested_title: null,
 		    suggested_url: null,
+		    suggested_name: null,
 		  	colors: ['#87CEEB', '#FF7F50', '#66CDAA', '#FF8C00', '#AFEEEE', '#FFA07A', '#D8BFD8', '#FFD700', '#FFA07A', '#DDA0DD', '#BC8F8F', '#F28D8C', '#FFC800', '#74EADE'],
 		    news_items: [],
 		    loading: true,
@@ -202,6 +205,7 @@
 			clearModalFields:  function(){
 				this.suggested_title = null;
 				this.suggested_url = null;
+				this.suggested_name = null;
 				this.suggestion_modal_success = false;
 				this.form_error = false;
 			},
@@ -212,6 +216,7 @@
 							"fields": {
 								"Title": this.suggested_title,
 								"URL": this.suggested_url,
+								"Name": this.suggested_name,
 							}
 						},
 					], 

@@ -200,6 +200,9 @@ textarea{
 input[type="text"].form-control{
 	height: 48px;
 }
+textarea.form-control{
+	margin-bottom: 15px !important
+}
 .footer-quote {
 	margin: -10px 0px 70px 0px;
 }
